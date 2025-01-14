@@ -1,6 +1,7 @@
 package com.duc82.finderapi.properties.entities;
 
 
+import com.duc82.finderapi.cities.entities.City;
 import com.duc82.finderapi.properties.enums.PropertyStatus;
 import com.duc82.finderapi.properties.enums.PropertyTransactionType;
 import com.duc82.finderapi.properties.enums.PropertyType;
@@ -26,9 +27,6 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-
-    @Column(nullable = false)
-    private String name;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -63,10 +61,10 @@ public class Property {
     private int bathrooms;
 
     @Column(nullable = false)
-    private int garage;
+    private int garages;
 
     @Column(nullable = false)
-    private int floor;
+    private int floors;
 
     @Column(nullable = false)
     private int yearBuilt;
@@ -77,11 +75,11 @@ public class Property {
     @Column()
     private int views;
 
-    @Column(nullable = false)
+    @Column()
     private boolean verified;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(4) default 'SALE'")
+    @Column(columnDefinition = "varchar(4)")
     private PropertyTransactionType transactionType;
 
     @Enumerated(EnumType.STRING)
@@ -91,6 +89,10 @@ public class Property {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
 
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PropertyImage> images;

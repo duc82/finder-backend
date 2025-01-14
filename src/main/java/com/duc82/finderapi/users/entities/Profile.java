@@ -18,7 +18,6 @@ public class Profile {
     private UUID id;
     private String bio;
     private String avatar;
-    private String company;
     private String address;
     private String facebook;
     private String twitter;

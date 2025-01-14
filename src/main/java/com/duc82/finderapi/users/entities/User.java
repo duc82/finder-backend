@@ -28,10 +28,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @Column(nullable = false)
     private String fullName;
+
     @Column(nullable = false)
     private String email;
+
     @Column()
     private String phone;
 
@@ -63,7 +66,7 @@ public class User {
     @JoinColumn(name = "token_id", referencedColumnName = "id")
     private Token token;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Property> properties;
 
     public void softDelete() {
